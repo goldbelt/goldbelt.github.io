@@ -1,20 +1,4 @@
-$('#invalidUser').modal('hide');
 
-function signIn(){
-    check(document.getElementById("username").value)
-}
-
-function check(username){
-    firebase.database().ref('/Accounts/').once('value').then(function(snapshot) {
-        if(Object.keys(snapshot.val()).includes(username)){
-            document.cookie = "username="+username; 
-            console.log("redir");
-            window.location = "dojo/index.html"
-        }else{
-            $('#invalidUser').modal('show');
-        }
-    })
-}
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -32,9 +16,29 @@ function getCookie(cname) {
     return "";
   }
 
+
+  function check(username){
+    firebase.database().ref('/Accounts/').once('value').then(function(snapshot) {
+        if(Object.keys(snapshot.val()).includes(username)){ 
+            start(username)
+        }else{
+            reject()
+        }
+    })
+}
+
 if(getCookie("username")!=""){
     console.log("Username: "+getCookie("username"))
     check(getCookie("username"));
 }else{
     console.log("no cookie")
+    reject()
+}
+
+function reject(){
+    //window.location = "../index.html"
+}
+
+function start(username){
+
 }

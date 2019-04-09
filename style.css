@@ -1,0 +1,19 @@
+.white{
+    border-radius: 5px;
+    border-color: lightgray;
+    border-style: solid;
+    font-style: italic;
+}
+.yellow{
+    border-radius: 5px;
+    border-color: yellow;
+    border-style: solid;
+    font-style: italic;
+}
+.desc{
+    font-size: 20px;
+}
+#signInDiv{
+    padding: 0 0;
+    height: 100%;
+}
