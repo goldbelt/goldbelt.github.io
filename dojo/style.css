@@ -17,3 +17,8 @@
     padding: 0 0;
     height: 100%;
 }
+canvas{
+    border-style: solid;
+    height:600px;
+    width:800px;
+}
