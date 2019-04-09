@@ -21,7 +21,7 @@
 
 body{
     background-image:url(homeback.PNG);
-    background-size: 1300px;
+    background-size: cover;
     background-attachment: fixed;
 }
 
@@ -35,15 +35,8 @@ h1{
 p{
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    padding-left: 15px;
+    padding-left: 50px;
     color:rgb(15, 0, 0);
-}
-
-small{
-    font-family: 'Poppins', sans-serif;
-    padding-left: 300px;
-    color: bisque;
-    font-style: italic;
 }
 
 button{
@@ -66,7 +59,10 @@ button{
     color: bisque;
     font-size: 25px;
 }
-
-.morePadding{
-    padding-left: 430px;
+small{
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    text-align: right;
+    color: bisque;
+    font-style: italic;
 }
