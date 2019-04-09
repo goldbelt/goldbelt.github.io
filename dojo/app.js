@@ -55,3 +55,8 @@ function start(username){
     document.getElementById("username").innerText = username;
     
 }
+
+function run(){
+    eval(document.getElementById("input").innerText)
+    document.getElementById("run").innerText = "Restart";
+}
