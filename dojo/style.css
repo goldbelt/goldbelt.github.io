@@ -26,3 +26,8 @@ canvas{
   color:grey;
   font-style:italic;
 }
+
+[contentEditable=true]{
+    height: 90vh;
+   overflow-y: scroll;
+}
