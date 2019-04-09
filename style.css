@@ -7,7 +7,7 @@
     font-style: italic;
 }
 .yellow{
-    border-radius: 2px;
+    border-radius: 5px;
     background-color: yellow;
     border-color: yellow;
     color: black;
@@ -26,18 +26,24 @@ body{
 }
 
 h1{
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: beige;
     font-size: 50px;
-    font-family: 'Fascinate Inline', cursive;
-    font-style: unset;
+    font-family: 'Fredoka One', cursive;
 }
 
 p{
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     padding-left: 15px;
-    color: beige;
+    color:rgb(15, 0, 0);
+}
+
+small{
+    font-family: 'Poppins', sans-serif;
+    padding-left: 300px;
+    color: bisque;
+    font-style: italic;
 }
 
 button{
@@ -45,4 +51,22 @@ button{
 }
 .title{
     color: rgb(255, 239, 15);
+}
+
+.gold{
+    border-radius: 5px;
+    border-color: rgb(255, 239, 15);
+    background-color: rgb(255, 239, 15);
+    color: black;
+    border-style: solid;
+    font-style: italic;
+}
+
+.remember{
+    color: bisque;
+    font-size: 25px;
+}
+
+.morePadding{
+    padding-left: 430px;
 }
