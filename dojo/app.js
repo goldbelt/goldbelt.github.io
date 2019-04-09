@@ -38,7 +38,7 @@ if(getCookie("username")!=""){
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var scaleFactor = 800/canvas.width
+var scaleFactor = canvas.width/800
 ctx.scale(scaleFactor, scaleFactor);
 
 function reject(){
