@@ -19,8 +19,7 @@
 }
 canvas{
     border-style: solid;
-    height:600px;
-    width:800px;
+    width:100%;
 }
 [contentEditable=true]:empty:not(:focus):before{
   content:attr(data-ph);
