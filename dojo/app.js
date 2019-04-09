@@ -35,6 +35,12 @@ if(getCookie("username")!=""){
     reject()
 }
 
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+var scaleFactor = 800/canvas.width
+ctx.scale(scaleFactor, scaleFactor);
+
 function reject(){
     if((window.location.href).includes("http"))
         window.location = "../index.html"
@@ -47,4 +53,5 @@ function signOut(){
 
 function start(username){
     document.getElementById("username").innerText = username;
+    
 }
