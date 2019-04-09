@@ -20,7 +20,7 @@ function getCookie(cname) {
   function check(username){
     firebase.database().ref('/Accounts/').once('value').then(function(snapshot) {
         if(Object.keys(snapshot.val()).includes(username)){ 
-            start(username)
+            start(username, snapshot.val())
         }else{
             reject()
         }
@@ -51,9 +51,14 @@ function signOut(){
     reject();
 }
 
-function start(username){
+function start(username, data){
     document.getElementById("username").innerText = username;
-    
+
+var userData = data[username]
+var projects = Object.keys(userData)
+    for(project of projects){
+
+}
 }
 
 function run(){
