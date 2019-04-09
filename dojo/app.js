@@ -59,4 +59,15 @@ function start(username){
 function run(){
     eval(document.getElementById("input").innerText)
     document.getElementById("run").innerText = "Restart";
+    
+    //Stop all timers
+    var maxId = setTimeout(function(){}, 0);
+    for(var i=0; i < maxId; i+=1) { 
+        clearTimeout(i);
+    }
+    
+    //Stop all intervals
+    var interval_id = window.setInterval("", 9999);
+    for (var i = 1; i < interval_id; i++)
+        window.clearInterval(i);
 }
