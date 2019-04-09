@@ -1,19 +1,48 @@
 .white{
     border-radius: 5px;
-    border-color: lightgray;
+    border-color: azure;
+    background-color: azure;
+    color: black;
     border-style: solid;
     font-style: italic;
 }
 .yellow{
-    border-radius: 5px;
+    border-radius: 2px;
+    background-color: yellow;
     border-color: yellow;
+    color: black;
     border-style: solid;
     font-style: italic;
 }
-.desc{
-    font-size: 20px;
-}
 #signInDiv{
-    padding: 0 0;
+    padding-right: 50px;
     height: 100%;
+}
+
+body{
+    background-image:url(mountain.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1{
+    font-family: sans-serif;
+    color: beige;
+    font-size: 50px;
+    font-family: 'Fascinate Inline', cursive;
+    font-style: unset;
+}
+
+p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    padding-left: 30px;
+    color: beige;
+}
+
+button{
+    background-color: bisque;
+}
+.title{
+    color: yellow;
 }
