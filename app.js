@@ -7,33 +7,19 @@ function signIn(){
 function check(username){
     firebase.database().ref('/Accounts/').once('value').then(function(snapshot) {
         if(Object.keys(snapshot.val()).includes(username)){
-            document.cookie = "username="+username; 
+            sessionStorage.setItem('username', username);
             console.log("redir");
             window.location = "dojo/index.html"
         }else{
             $('#invalidUser').modal('show');
+            sessionStorage.removeItem('username')
         }
     })
 }
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
 
-if(getCookie("username")!=""){
-    console.log("Username: "+getCookie("username"))
+if(sessionStorage.getItem('username')){
+    console.log("Username: "+sessionStorage.getItem('username'))
     check(getCookie("username"));
 }else{
     console.log("no cookie")

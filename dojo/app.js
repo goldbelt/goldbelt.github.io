@@ -1,20 +1,5 @@
 
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
 
 
   function check(username){
@@ -27,9 +12,9 @@ function getCookie(cname) {
     })
 }
 
-if(getCookie("username")!=""){
-    console.log("Username: "+getCookie("username"))
-    check(getCookie("username"));
+if(sessionStorage.getItem('username')){
+    console.log("Username: "+sessionStorage.getItem('username'))
+    check(sessionStorage.getItem('username'));
 }else{
     console.log("no cookie")
     reject()
@@ -47,7 +32,7 @@ function reject(){
 }
 
 function signOut(){
-    document.cookie = "username="
+    sessionStorage.clear();
     reject();
 }
 
