@@ -36,9 +36,15 @@ if(getCookie("username")!=""){
 }
 
 function reject(){
-    //window.location = "../index.html"
+    if((window.location.href).includes("http"))
+        window.location = "../index.html"
+}
+
+function signOut(){
+    document.cookie = "username="
+    reject();
 }
 
 function start(username){
-
+    document.getElementById("username").innerText = username;
 }
