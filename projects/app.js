@@ -44,7 +44,7 @@ function start(username, data){
             btn=`<button type="button" class="btn btn-success btn-block" onclick="btn('`+project+`')">Revisit</button>`;
         }else if(status == "IN PROGRESS"){
             btn=`<button type="button" class="btn btn-primary btn-block" onclick="btn('`+project+`')">Continue</button>`;
-        }else if(status == "UNOPENED"){
+        }else{
             btn=`<button type="button" class="btn btn-info btn-block" onclick="btn('`+project+`')">Start</button>`;
         }
         tr.innerHTML = `<tr>

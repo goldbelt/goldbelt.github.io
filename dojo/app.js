@@ -38,12 +38,40 @@ function signOut(){
 
 function start(username, data){
     document.getElementById("username").innerText = username;
+    var projectNameFromParams = getParams()["project"];
+    if(projectNameFromParams)
+        reject();
 
     var userData = data[username]
-    var projects = Object.keys(userData)
-    for(project of projects){
-        project
+    var projectData;
+    for(projectName in userData){
+        if(projectNameFromParams == projectName)
+             projectData = userData[projectName]
     }
+
+    var input = document.getElementById("input")
+    if(projectData["code"])
+        input.innerText = projectData["code"];
+
+    if(projectData["status"] == "UNOPENED")
+        firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+            status: "IN PROGRESS"
+        });
+
+        
+        input.addEventListener("input", function() {
+            firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+                code: input.innerText,
+            });
+        }, false);
+
+        function submit(){
+            window.location.href = "../project/index.html"
+            firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+                status: "DONE",
+            });
+        }
+        
 }
 
 function run(){
@@ -72,7 +100,7 @@ function run(){
 }
 
 function clear(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width/scaleFactor, canvas.height/scaleFactor);
 }
 
 var errorBox = document.getElementById("errorBox");
@@ -88,4 +116,22 @@ function createErr(message){
 }
 function clearErr(){
     errorBox.innerHTML = "";
+}
+
+function getParams () {
+    var url = window.location.href;
+	var params = {};
+	var parser = document.createElement('a');
+	parser.href = url;
+	var query = parser.search.substring(1);
+	var vars = query.split('&');
+	for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split('=');
+		params[pair[0]] = decodeURIComponent(pair[1]);
+	}
+	return params;
+};
+
+function showSubmitBtn(){
+    document.getElementById("submit").style.display = "block";
 }
