@@ -14,22 +14,22 @@
     <title>Gold Belt Dojo</title>
   </head>
   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent; border-color: transparent">
           <a class="navbar-brand" href="#"> <span class="titleCorner">Gold Belt</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color: rgb(230, 252, 172)">
+            <ul class="navbar-nav mr-auto" style="color: rgb(230, 252, 172)">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Projects</a>
+                <a class="nav-link" href="#" style="color: rgb(230, 252, 172)">Projects</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#" style="color: rgb(230, 252, 172)">Link</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: rgb(230, 252, 172)">
                   Dropdown
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,23 +40,23 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" style="color: rgb(230, 252, 172)">Disabled</a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <span id="username">Username</span><p style="width:10px"></p>
-              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="signOut()">Sign Out</button>
+              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="signOut()" style="background-color: rgb(255, 212, 22); color:rgb(31, 31, 31); border-color: rgb(255, 212, 22)">Sign Out</button>
             </form>
           </div>
         </nav>
     <div class="container-fluid" style="padding:0;">
 
-        <table class="table table-striped">
+        <table class="table">
             <thead>
               <tr>
-                <th scope="col">Project Name</th>
-                <th scope="col">Status</th>
-                <th scope="col">Edit</th>
+                <th scope="col" style="color:  rgb(230, 252, 172)">Project Name</th>
+                <th scope="col" style="color:  rgb(230, 252, 172)">Status</th>
+                <th scope="col" style="color:  rgb(230, 252, 172)">Edit</th>
               </tr>
             </thead>
             <tbody id="tableBody">
