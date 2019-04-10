@@ -39,7 +39,7 @@ function signOut(){
 function start(username, data){
     document.getElementById("username").innerText = username;
     var projectNameFromParams = getParams()["project"];
-    if(projectNameFromParams)
+    if(!projectNameFromParams)
         reject();
 
     var userData = data[username]
