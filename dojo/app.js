@@ -77,15 +77,6 @@ function start(username, data){
 function run(){
     clear()
     clearErr()
-    try{
-        eval(document.getElementById("input").innerText)
-    }catch(e){
-        console.log(e)
-        createErr(e)
-    }
-    
-    document.getElementById("run").innerText = "Restart";
-    
     
     //Stop all timers
     var maxId = setTimeout(function(){}, 0);
@@ -97,6 +88,14 @@ function run(){
     var interval_id = window.setInterval("", 9999);
     for (var i = 1; i < interval_id; i++)
         window.clearInterval(i);
+
+    try{
+        eval(document.getElementById("input").innerText)
+        document.getElementById("run").innerText = "Restart";
+    }catch(e){
+        console.log(e)
+        createErr(e)
+    }
 }
 
 function clear(){
