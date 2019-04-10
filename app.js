@@ -9,7 +9,7 @@ function check(username){
         if(Object.keys(snapshot.val()).includes(username)){
             sessionStorage.setItem('username',username)
             console.log("redir");
-            window.location = "dojo/index.html"
+            window.location = "projects/index.html"
         }else{
             $('#invalidUser').modal('show');
         }
