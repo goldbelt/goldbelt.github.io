@@ -25,18 +25,11 @@ body{
     background-attachment: fixed;
 }
 
-h1{
-    font-family: 'Poppins', sans-serif;
-    color: beige;
-    font-size: 50px;
-    font-family: 'Fredoka One', cursive;
-}
-
 p{
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     padding-left: 50px;
-    color:rgb(15, 0, 0);
+    color:rgb(230, 252, 172);
 }
 
 button{
@@ -57,12 +50,23 @@ button{
 
 .remember{
     color: bisque;
-    font-size: 25px;
+    font-size: 22px;
+    font-weight: bold;
 }
-small{
+.ask{
     font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    text-align: right;
-    color: bisque;
+    font-size: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    color:rgb(230, 252, 172);
+    text-align: center;
     font-style: italic;
+}
+
+.theHeader{
+    font-family: 'Archivo Black', sans-serif;
+    color: beige;
+    font-size: 50px;
+    font-family: 'Fredoka One', cursive;
 }

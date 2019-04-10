@@ -31,3 +31,8 @@ canvas{
     height: 90vh;
    overflow-y: scroll;
 }
+
+.signOut{
+    border-color: red;
+    background-color: red;
+}

@@ -1,3 +1,16 @@
 [scope=row]{
    font-style: italic;
 }
+
+body{
+   font-family: 'Poppins', sans-serif;
+   font-size: 20px;
+}
+
+.titleCorner{
+   border-radius: 5px;
+   border-color: rgb(255, 239, 15);
+   background-color: rgb(255, 239, 15);
+   color: black;
+   border-style: solid;
+}
