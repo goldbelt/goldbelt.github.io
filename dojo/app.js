@@ -39,11 +39,11 @@ function signOut(){
 function start(username, data){
     document.getElementById("username").innerText = username;
 
-var userData = data[username]
-var projects = Object.keys(userData)
+    var userData = data[username]
+    var projects = Object.keys(userData)
     for(project of projects){
-
-}
+        project
+    }
 }
 
 function run(){
