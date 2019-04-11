@@ -1,3 +1,14 @@
+var provider = new firebase.auth.GoogleAuthProvider();
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user)
+  } else {
+    firebase.auth().signInWithRedirect(provider);
+  }
+});
+
+
 if(getParams()["username"]&&getParams()["project"]){
   document.getElementById("username").innerText = getParams()["username"];
   document.getElementById("project").innerText = getParams()["project"];
