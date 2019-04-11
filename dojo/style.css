@@ -19,6 +19,7 @@
 }
 canvas{
     border-style: solid;
+    background-color: rgb(230, 252, 172);
     width:100%;
 }
 [contentEditable=true]:empty:not(:focus):before{
@@ -27,12 +28,36 @@ canvas{
   font-style:italic;
 }
 
+p{
+    color: rgb(255, 238, 0);
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: -30px;
+    display: inline;
+}
+
 [contentEditable=true]{
     height: 90vh;
    overflow-y: scroll;
 }
 
-.signOut{
-    border-color: red;
-    background-color: red;
-}
+.titleCorner{
+    border-radius: 5px;
+    border-color: rgb(255, 239, 15);
+    background-color: rgb(255, 239, 15);
+    color: black;
+    border-style: solid;
+ }
+
+body{
+    font-size: 20px;
+    background-image:url(b2.PNG);
+    background-size: cover;
+    background-attachment: fixed;
+ }
+
+ .remember{
+    font-family: 'Poppins', sans-serif;
+    color:  rgb(230, 252, 172);
+    font-size: 20px;
+ }

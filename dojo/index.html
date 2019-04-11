@@ -14,54 +14,58 @@
     <title>Gold Belt Dojo</title>
   </head>
   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Gold Belt</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="../projects/index.html">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <span id="username">Username</span><p style="width:10px"></p>
-              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="signOut()"><span class="">Log Out</span></button>
-            </form>
-          </div>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent; border-color: transparent">
+      <a class="navbar-brand" href="#"> <span class="titleCorner">Gold Belt</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color: rgb(230, 252, 172)">
+        <ul class="navbar-nav mr-auto" style="color: rgb(230, 252, 172)">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" style="color: rgb(230, 252, 172)">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: rgb(230, 252, 172)">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: rgb(230, 252, 172)">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" style="color: rgb(230, 252, 172)">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <span id="username">Username</span><p1 style="width:10px"></p1>
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="signOut()" style="background-color: rgb(255, 212, 22); color:rgb(31, 31, 31); border-color: rgb(255, 212, 22)">Sign Out</button>
+        </form>
+      </div>
+    </nav>
     <div class="container-fluid">
           <div class="row">
-            <div class="col-6">
-              <canvas id="canvas"></canvas>
-              <button id="run" type="button" class="btn btn-success btn-lg btn-block" onclick="run()">Start</button>
-              <button id="submit" type="button" class="btn btn-primary btn-lg btn-block" onclick="submit()" style="display:none;">Submit</button>
-              <p>Remember, the canvas has a width of 800 and a height of 600</p>
+            <div class="col-6" style="margin-left: 80px; margin-top: 10px;">
+              <p style="margin-left: -10px">0</p>
+              <p style="margin-left: 690px">800</p>
+              <canvas id="canvas" style="border-color: rgb(230, 252, 172)"></canvas>
+              <p>600</p>
+              <br>
+              <button id="run" type="button" class="btn btn-success btn-lg btn-block" style="background-color: rgb(255, 239, 15); color: black; border-color: transparent; margin-top: 20px" onclick="run()">Start</button>
+              <button id="submit" type="button" class="btn btn-primary btn-lg btn-block" onclick="submit()" style="display:none">Submit</button>
+              <p><span class="remember">Remember: the canvas has a width of 800 and a height of 600!</span></p>
               <div id="errorBox"></div>
             </div>
 
 
-            <div class="col-6 ">
-                <div data-ph="Enter Code Here" contenteditable="true" id="input" width="100%" height="100%"style="border-radius:5px;border-style:solid;"></div>
+            <div class="col-5 margin-left: 80px; margin-top: 50px">
+                <div data-ph="Enter Code Here" contenteditable="true" id="input" width="100%" height="100%"style="border-radius:5px;border-style:solid;border-color: rgb(230, 252, 172); background-color: black; color:rgb(230, 252, 172)"></div>
           </div>
     </div>
 
