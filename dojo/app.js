@@ -36,9 +36,13 @@ function signOut(){
     reject();
 }
 
+var usernameGlobal;
+var projectNameFromParams;
+
 function start(username, data){
+    usernameGlobal = username
     document.getElementById("username").innerText = username;
-    var projectNameFromParams = getParams()["project"];
+    projectNameFromParams = getParams()["project"];
     if(!projectNameFromParams)
         reject();
 
@@ -65,14 +69,42 @@ function start(username, data){
             });
         }, false);
 
-        function submit(){
-            window.location.href = "../project/index.html"
-            firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
-                status: "DONE",
-            });
-        }
+        document.getElementById("submit").style.display = "block";
         
 }
+
+function submit(){
+    if(usernameGlobal&&projectNameFromParams){
+        $('#senseiCheck').modal('show');
+        firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).update({
+            status: "AWAITING SENSEI APPROVAL",
+        },function(){
+            console.log("done")
+            var statTracker = firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).on('value',function(snapshot) {
+                if(snapshot.val()["status"] != "AWAITING SENSEI APPROVAL"){
+                    if(snapshot.val()["status"] != "DONE"){
+                        $('#senseiCheck').modal('hide');
+                        firebase.database().ref('/path/to/relevant/chatNode').off('value', statTracker)
+                    }else{
+                        window.location.href = "../projects/index.html"
+                    }
+                }
+            })
+        });
+    }
+}
+
+function cancelSubmit(){
+    if(usernameGlobal&&projectNameFromParams){
+        //window.location.href = "../project/index.html"
+        firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).update({
+            status: "IN PROGRESS",
+        },function(){
+            $('#senseiCheck').modal('hide');
+        });
+    }
+}
+
 
 function run(){
     clear()

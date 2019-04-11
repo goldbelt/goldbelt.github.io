@@ -32,6 +32,7 @@ function start(username, data){
     var tableBody = document.getElementById("tableBody")
     var userData = data[username]
     var projects = Object.keys(userData)
+    tableBody.innerHTML = "";
     for(project of projects){
         var tr = document.createElement("tr")
         var status = userData[project]["status"];
