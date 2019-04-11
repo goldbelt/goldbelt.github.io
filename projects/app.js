@@ -1,8 +1,4 @@
-
-
-
-
-  function check(username){
+function check(username){
     firebase.database().ref('/Accounts/').on('value',function(snapshot) {
         if(Object.keys(snapshot.val()).includes(username)){ 
             start(username, snapshot.val())
@@ -44,14 +40,14 @@ function start(username, data){
         if(status == "DONE"){
             btn=`<button type="button" class="btn btn-success btn-block" onclick="btn('`+project+`')">Revisit</button>`;
         }else if(status == "IN PROGRESS"){
-            btn=`<button type="button" class="btn btn-primary btn-block" onclick="btn('`+project+`')">Continue</button>`;
+            btn=`<button type="button" class="btn btn-primary btn-block" style="color: rgb(230, 252, 172)" onclick="btn('`+project+`')">Continue</button>`;
         }else{
             btn=`<button type="button" class="btn btn-info btn-block" onclick="btn('`+project+`')">Start</button>`;
         }
         tr.innerHTML = `<tr>
-            <th scope="row">`+project+`</th>
-            <td>`+status+`</td>
-            <td>`+btn+`</td>
+            <th scope="row" style="color:  rgb(230, 252, 172)">`+project+`</th>
+            <td style="color:  rgb(230, 252, 172)">`+status+`</td>
+            <td style="background-color: rgb(255, 196, 0); color: black">`+btn+`</td>
          </tr>`
          tableBody.appendChild(tr)
     }
