@@ -38,11 +38,11 @@ function start(username, data){
         var status = userData[project]["status"];
         var btn="";
         if(status == "DONE"){
-            btn=`<button type="button" class="btn btn-success btn-block" style="color: black; background-color: rgb(255, 196, 0)" onclick="btn('`+project+`')">Revisit</button>`;
+            btn=`<button type="button" class="btn btn-success btn-block" style="color: rgb(255, 239, 15); background-color: black" onclick="btn('`+project+`')">Revisit</button>`;
         }else if(status == "IN PROGRESS"){
-            btn=`<button type="button" class="btn btn-primary btn-block" style="color: black; background-color: rgb(255, 196, 0)" onclick="btn('`+project+`')">Continue</button>`;
+            btn=`<button type="button" class="btn btn-primary btn-block" style="background-color: rgb(255, 45, 45); color: black" onclick="btn('`+project+`')">Continue</button>`;
         }else{
-            btn=`<button type="button" class="btn btn-info btn-block" style="color: black; background-color: rgb(255, 196, 0)" onclick="btn('`+project+`')">Start</button>`;
+            btn=`<button type="button" class="btn btn-info btn-block" style="background-color: rgb(255, 239, 15); color: black" onclick="btn('`+project+`')">Start</button>`;
         }
         tr.innerHTML = `<tr>
             <th scope="row" style="color:  rgb(230, 252, 172)">`+project+`</th>
