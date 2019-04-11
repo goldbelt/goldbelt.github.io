@@ -47,7 +47,7 @@ function start(username, data){
         tr.innerHTML = `<tr>
             <th scope="row" style="color:  rgb(230, 252, 172)">`+project+`</th>
             <td style="color:  rgb(230, 252, 172)">`+status+`</td>
-            <td style="background-color: rgb(255, 196, 0); color: black">`+btn+`</td>
+            <td style="color: black">`+btn+`</td>
          </tr>`
          tableBody.appendChild(tr)
     }
