@@ -1,7 +1,3 @@
-
-
-
-
   function check(username){
     firebase.database().ref('/Accounts/').once('value').then(function(snapshot) {
         if(Object.keys(snapshot.val()).includes(username)){ 
