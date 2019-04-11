@@ -75,7 +75,7 @@ function start(username, data){
 
 function submit(){
     if(usernameGlobal&&projectNameFromParams){
-        new QRCode(document.getElementById("qrcode"), "http://goldbelt.github.io/sensei/grading/index.html?username=+"+username+"&project="+projectNameFromParams);
+        new QRCode(document.getElementById("qrcode"), "http://goldbelt.github.io/sensei/grading/index.html?username=+"+usernameGlobal+"&project="+projectNameFromParams);
         $('#senseiCheck').modal('show');
         firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).update({
             status: "AWAITING SENSEI APPROVAL",
