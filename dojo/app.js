@@ -23,7 +23,9 @@ if(sessionStorage.getItem('username')){
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+//auto resize the canvas
 var scaleFactor = canvas.width/800
+canvas.height = canvas.width/800*600;
 ctx.scale(scaleFactor, scaleFactor);
 
 function reject(){
