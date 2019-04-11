@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       }else{
         document.getElementById("container").innerHTML = `<h1 class="display-1 text-center">INVALID</h1>
         <h4 class="display-4 text-center">You are not a sensei.</h4>`;
-        firebase.auth().signOut();
+        setTimeout(function(){firebase.auth().signOut()},5000);
       }
     })
   } else {
