@@ -16,13 +16,6 @@ if(sessionStorage.getItem('username')){
     reject()
 }
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-
-//auto resize the canvas
-var scaleFactor = canvas.width/800
-canvas.height = canvas.width/800*600;
-ctx.scale(scaleFactor, scaleFactor);
 
 function reject(){
     if((window.location.href).includes("http"))
@@ -33,6 +26,14 @@ function signOut(){
     sessionStorage.clear();
     reject();
 }
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+//auto resize the canvas
+var scaleFactor = canvas.width/800
+canvas.height = canvas.width/800*600;
+ctx.scale(scaleFactor, scaleFactor);
 
 var usernameGlobal;
 var projectNameFromParams;
@@ -50,24 +51,59 @@ function start(username, data){
         if(projectNameFromParams == projectName)
              projectData = userData[projectName]
     }
-
-    var input = document.getElementById("input")
-    if(projectData["code"])
-        input.innerText = projectData["code"];
-
-    if(projectData["status"] == "UNOPENED")
-        firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
-            status: "IN PROGRESS"
-        });
-
-        
-        input.addEventListener("input", function() {
+    
+    if(!projectData.questions){
+        document.getElementById("codeDojo").style.display = "block";
+        var input = document.getElementById("input")
+        if(projectData["code"])
+            input.innerText = projectData["code"];
+    
+        if(projectData["status"] == "UNOPENED")
             firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
-                code: input.innerText,
+                status: "IN PROGRESS"
             });
-        }, false);
+    
+            
+            input.addEventListener("input", function() {
+                firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+                    code: input.innerText,
+                });
+            }, false);
+    
+            document.getElementById("submit").style.display = "block";
+    }else{
+        //QUIZ
+        document.getElementById("quizDojo").style.display = "block";
 
-        document.getElementById("submit").style.display = "block";
+        for(question in projectData.questions){
+            var div = document.createElement("DIV")
+            var ques = document.createElement("h6");
+            ques.classList.add("display-4")
+            ques.innerText = question;
+            div.appendChild(ques)
+            for(index in projectData.questions[question]){
+                if(index){
+                    var divQues = document.createElement("DIV");
+                    divQues.classList.add("form-check")
+                    var option = projectData.questions[question][index];
+                    divQues.innerHTML = `        
+                    <input class="form-check-input" type="radio" name="`+question+`" id="exampleRadios2" value="`+option+`">
+                    <label class="form-check-label" for="exampleRadios2">
+                      `+option+`
+                    </label>`
+                    div.appendChild(divQues)
+                    
+                }
+            }
+            document.getElementById("questions").appendChild(div)
+            document.getElementById("questions").appendChild(document.createElement("BR"))
+            document.getElementById("questions").appendChild(document.createElement("BR"))
+        }
+        //document.querySelector('input[name="genderS"]:checked').value;
+    }
+    document.getElementById("loading").style.display = "none";
+
+
         
 }
 
@@ -84,7 +120,7 @@ function submit(){
                 if(snapshot.val()["status"] != "AWAITING SENSEI APPROVAL"){
                     if(snapshot.val()["status"] != "DONE"){
                         $('#senseiCheck').modal('hide');
-                        firebase.database().ref('/path/to/relevant/chatNode').off('value', statTracker)
+                        firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)
                     }else{
                         window.location.href = "../projects/index.html"
                     }

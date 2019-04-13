@@ -1,7 +1,8 @@
 $('#invalidUser').modal('hide');
 
 function signIn(){
-    check(document.getElementById("username").value)
+    check(document.getElementById("username").value.toLowerCase())
+    var str = "test"
 }
 
 function check(username){

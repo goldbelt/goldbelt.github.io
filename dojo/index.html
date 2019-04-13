@@ -49,7 +49,11 @@
         </form>
       </div>
     </nav>
-    <div class="container-fluid">
+
+
+    <p id="loading" class="text-center" style="display:block;">Loading...</p>
+
+    <div class="container-fluid" id="codeDojo" style="display:none">
           <div class="row">
             <div class="col-6" style="margin-left: 80px; margin-top: 10px;">
               <div id="errorBox"></div>
@@ -67,10 +71,20 @@
 
             <div class="col-5 margin-left: 100px; margin-top: 50px">
                 <div data-ph="Enter Code Here" contenteditable="true" id="input" width="100%" height="100%"style="border-radius:5px;border-style:solid;border-color: rgb(230, 252, 172); background-color: black; color:rgb(230, 252, 172)"></div>
+            </div>
           </div>
     </div>
 
 
+    <div class="container" id="quizDojo" style="display:none">
+      
+      <div id="questions">
+
+      </div>
+
+      <button id="submit" type="button" class="btn btn-primary btn-lg btn-block" style="background-color: black; color: rgb(255, 239, 15); border-color: transparent" onclick="submit()" style="display:none">Submit</button>
+      <br><br>
+    </div>
 
     <div id="invalidUser" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
