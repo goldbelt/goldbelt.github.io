@@ -51,27 +51,8 @@ function start(username, data){
         if(projectNameFromParams == projectName)
              projectData = userData[projectName]
     }
-    
-    if(!projectData.questions){
-        document.getElementById("codeDojo").style.display = "block";
-        var input = document.getElementById("input")
-        if(projectData["code"])
-            input.innerText = projectData["code"];
-    
-        if(projectData["status"] == "UNOPENED")
-            firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
-                status: "IN PROGRESS"
-            });
-    
-            
-            input.addEventListener("input", function() {
-                firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
-                    code: input.innerText,
-                });
-            }, false);
-    
-            document.getElementById("submit").style.display = "block";
-    }else{
+    console.log(projectData.scratchInstuctions)
+    if(projectData.questions){
         //QUIZ
         document.getElementById("quizDojo").style.display = "block";
 
@@ -100,13 +81,54 @@ function start(username, data){
             document.getElementById("questions").appendChild(document.createElement("BR"))
         }
         //document.querySelector('input[name="genderS"]:checked').value;
+
+    }else if(projectData.scratchInstuctions){
+        document.getElementById("scratchDojo").style.display = "block";
+
+        var input = document.getElementById("scratchInput")
+
+        if(projectData["code"])
+            input.value = projectData["code"];
+    
+        if(projectData["status"] == "UNOPENED")
+            firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+                status: "IN PROGRESS"
+            });
+    
+            
+        input.addEventListener("input", function() {
+            firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+                code: input.value,
+            });
+        }, false);
+    
+        document.getElementById("submitScratch").style.display = "block";
+    }else{
+        document.getElementById("codeDojo").style.display = "block";
+        var input = document.getElementById("input")
+        if(projectData["code"])
+            input.innerText = projectData["code"];
+    
+        if(projectData["status"] == "UNOPENED")
+            firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+                status: "IN PROGRESS"
+            });
+    
+            
+            input.addEventListener("input", function() {
+                firebase.database().ref("Accounts/"+username+"/"+projectNameFromParams).update({
+                    code: input.innerText,
+                });
+            }, false);
+    
+            document.getElementById("submit").style.display = "block";
     }
     document.getElementById("loading").style.display = "none";
 
 
         
 }
-
+var scratchWindow;
 function submit(){
     if(usernameGlobal&&projectNameFromParams){
         document.getElementById("qrcode").innerHTML = ""
@@ -118,11 +140,20 @@ function submit(){
             console.log("done")
             var statTracker = firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).on('value',function(snapshot) {
                 if(snapshot.val()["status"] != "AWAITING SENSEI APPROVAL"){
+                    var input = document.getElementById("scratchInput")
+                    if(input.value){
+                        scratchWindow = window.open(input.value);
+                    }
                     if(snapshot.val()["status"] != "DONE"){
                         $('#senseiCheck').modal('hide');
-                        firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)
+                        //firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)    
                     }else{
-                        window.location.href = "../projects/index.html"
+                        if(snapshot.val()["scratchInstuctions"])
+                            if(input.value){
+                                scratchWindow.close();
+                            }
+                        
+                        //window.location.href = "../projects/index.html"
                     }
                 }
             })
@@ -133,6 +164,7 @@ function submit(){
 function cancelSubmit(){
     if(usernameGlobal&&projectNameFromParams){
         //window.location.href = "../project/index.html"
+        firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)
         firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).update({
             status: "IN PROGRESS",
         },function(){
