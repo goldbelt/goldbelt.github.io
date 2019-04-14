@@ -128,8 +128,7 @@ function start(username, data){
 
         
 }
-var scratchWindow;
-var statTracker;
+
 function submit(){
     if(usernameGlobal&&projectNameFromParams){
         document.getElementById("qrcode").innerHTML = ""
@@ -140,24 +139,18 @@ function submit(){
         },function(){
             console.log("done")
             firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)
-            statTracker = firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).on('value',function(snapshot) {
+            var statTracker = firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).on('value',function(snapshot) {
                 if(snapshot.val()["status"] != "AWAITING SENSEI APPROVAL"){
-                    var input2 = document.getElementById("scratchInput")
-                    if(input2.value){
-                        scratchWindow = window.open(input2.value);
-                    }
                     if(snapshot.val()["status"] != "DONE"){
                         $('#senseiCheck').modal('hide');
-                        //firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)    
-                    }else{
+                        var input = document.getElementById("scratchInput")
                         if(snapshot.val()["scratchInstuctions"])
-                            if(input2.value){
-                                console.log("CLOSE WINDOW")
-                                console.log(scratchWindow)
-                                scratchWindow.close();
+                            if(input.value){
+                                window.open(input.value);
                             }
-                        
-                        //window.location.href = "../projects/index.html"
+                                
+                    }else{
+                        window.location.href = "../projects/index.html"
                     }
                 }
             })
@@ -168,7 +161,6 @@ function submit(){
 function cancelSubmit(){
     if(usernameGlobal&&projectNameFromParams){
         //window.location.href = "../project/index.html"
-        firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)
         firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).update({
             status: "IN PROGRESS",
         },function(){
