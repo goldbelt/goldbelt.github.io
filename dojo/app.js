@@ -129,6 +129,7 @@ function start(username, data){
         
 }
 var scratchWindow;
+var statTracker;
 function submit(){
     if(usernameGlobal&&projectNameFromParams){
         document.getElementById("qrcode").innerHTML = ""
@@ -138,18 +139,21 @@ function submit(){
             status: "AWAITING SENSEI APPROVAL",
         },function(){
             console.log("done")
-            var statTracker = firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).on('value',function(snapshot) {
+            firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)
+            statTracker = firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).on('value',function(snapshot) {
                 if(snapshot.val()["status"] != "AWAITING SENSEI APPROVAL"){
-                    var input = document.getElementById("scratchInput")
-                    if(input.value){
-                        scratchWindow = window.open(input.value);
+                    var input2 = document.getElementById("scratchInput")
+                    if(input2.value){
+                        scratchWindow = window.open(input2.value);
                     }
                     if(snapshot.val()["status"] != "DONE"){
                         $('#senseiCheck').modal('hide');
                         //firebase.database().ref("Accounts/"+usernameGlobal+"/"+projectNameFromParams).off('value', statTracker)    
                     }else{
                         if(snapshot.val()["scratchInstuctions"])
-                            if(input.value){
+                            if(input2.value){
+                                console.log("CLOSE WINDOW")
+                                console.log(scratchWindow)
                                 scratchWindow.close();
                             }
                         
