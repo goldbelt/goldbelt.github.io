@@ -37,9 +37,11 @@ function start(username, data){
         var tr = document.createElement("tr")
         var status = userData[project]["status"];
         var btn="";
-        var type = "Quiz"
-        if(!userData[project].questions)
-            type = "Code"
+        var type = "Code"
+        if(userData[project].questions)
+            type = "Quiz"
+        else if(userData[project].scratchInstuctions)
+            type = "Scratch Project"
         if(status == "DONE"){
             btn=`<button type="button" class="btn btn-success btn-block" style="color: rgb(255, 239, 15); background-color: black" onclick="btn('`+project+`')">Revisit</button>`;
         }else if(status == "IN PROGRESS"){
