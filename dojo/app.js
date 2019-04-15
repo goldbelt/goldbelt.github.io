@@ -85,6 +85,8 @@ function start(username, data){
     }else if(projectData.scratchInstuctions){
         document.getElementById("scratchDojo").style.display = "block";
 
+document.getElementById("scratchIntructions").innerText = projectData.scratchInstuctions
+
         var input = document.getElementById("scratchInput")
 
         if(projectData["code"])
