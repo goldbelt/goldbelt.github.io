@@ -54,6 +54,16 @@ function complete(){
     firebase.database().ref("Accounts/"+getParams()["username"]+"/"+getParams()["project"]).update({
       status: "DONE",
     },function(){
+      firebase.database().ref("Accounts/"+getParams()["username"]).once('value',function(snap){
+        firebase.database().ref("Projects/"+Object.keys(snap.val()).length).once('value',function(snap2){
+          var name = Object.keys(snap2.val())[0]
+          snap2.val()["name"]
+          firebase.database().ref("Accounts/"+getParams()["username"]).update({
+            name:  snap2.val()[name]
+          });
+        });
+      });
+
         console.log("done");
         document.getElementById("container").innerHTML = `<h1 class="display-1 text-center">DONE</h1>
         <h4 class="display-4 text-center">Close this page</h4>`;
