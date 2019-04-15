@@ -56,24 +56,30 @@ function complete(){
     },function(){
       firebase.database().ref("Accounts/"+getParams()["username"]).once('value',function(snap){
         firebase.database().ref("Projects/"+(Object.keys(snap.val()).length+1)).once('value',function(snap2){
-          if(!snap2.val()){
+          if(!snap2.exists()){
             firebase.database().ref("Accounts/"+getParams()["username"]).update({
               stat:  "done"
-            });
+            }).then(function(){
+        console.log("done");
+        document.getElementById("container").innerHTML = `<h1 class="display-1 text-center">DONE</h1>
+        <h4 class="display-4 text-center">This person has finished Goldbelt</h4>`;
+        window.close();
+});
           }else{
             var name = Object.keys(snap2.val())[0]
             snap2.val()["name"]
             firebase.database().ref("Accounts/"+getParams()["username"]).update({
               name:  snap2.val()[name]
-            });
-          }
-        });
-      });
-
+            }) .then(function(){
         console.log("done");
         document.getElementById("container").innerHTML = `<h1 class="display-1 text-center">DONE</h1>
         <h4 class="display-4 text-center">Close this page</h4>`;
         window.close();
+});
+          }
+        });
+      });
+
     });
   }
 }
