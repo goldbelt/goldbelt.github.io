@@ -67,11 +67,12 @@ function start(username, data){
                     var divQues = document.createElement("DIV");
                     divQues.classList.add("form-check")
                     var option = projectData.questions[question][index];
-			if(option.substring(0,4)=="img:"){
-				option = `<img src="`option.substring(4)`">`;
-			}
+			if(typeof option == 'string' &&option.substring(0,4)=="img:"){
+				option = `<img src="`+option.substring(4)+`">`;
+            }
+            console.log(option)
                     divQues.innerHTML = `        
-                    <input class="form-check-input" type="radio" name="`+question+`" id="exampleRadios2" value="`+option+`">
+                    <input class="form-check-input" type="radio" name="`+question+`" id="exampleRadios2" value="`+projectData.questions[question][index]+`">
                     <label class="form-check-label" for="exampleRadios2">
                       `+option+`
                     </label>`
