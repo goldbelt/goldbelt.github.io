@@ -55,12 +55,18 @@ function complete(){
       status: "DONE",
     },function(){
       firebase.database().ref("Accounts/"+getParams()["username"]).once('value',function(snap){
-        firebase.database().ref("Projects/"+Object.keys(snap.val()).length).once('value',function(snap2){
-          var name = Object.keys(snap2.val())[0]
-          snap2.val()["name"]
-          firebase.database().ref("Accounts/"+getParams()["username"]).update({
-            name:  snap2.val()[name]
-          });
+        firebase.database().ref("Projects/"+(Object.keys(snap.val()).length+1)).once('value',function(snap2){
+          if(!snap2.val()){
+            firebase.database().ref("Accounts/"+getParams()["username"]).update({
+              stat:  "done"
+            });
+          }else{
+            var name = Object.keys(snap2.val())[0]
+            snap2.val()["name"]
+            firebase.database().ref("Accounts/"+getParams()["username"]).update({
+              name:  snap2.val()[name]
+            });
+          }
         });
       });
 
