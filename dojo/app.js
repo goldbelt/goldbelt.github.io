@@ -37,6 +37,7 @@ ctx.scale(scaleFactor, scaleFactor);
 
 var usernameGlobal;
 var projectNameFromParams;
+var quizQuestions;
 
 function start(username, data){
     usernameGlobal = username
@@ -54,6 +55,7 @@ function start(username, data){
     console.log(projectData.scratchInstuctions)
     if(projectData.questions){
         //QUIZ
+        quizQuestions = projectData.questions;
         document.getElementById("quizDojo").style.display = "block";
 
         for(question in projectData.questions){
@@ -63,14 +65,14 @@ function start(username, data){
             ques.innerText = question;
             div.appendChild(ques)
             for(index in projectData.questions[question]){
-                if(index){
+                if(!isNaN(index)){
                     var divQues = document.createElement("DIV");
                     divQues.classList.add("form-check")
                     var option = projectData.questions[question][index];
-			if(typeof option == 'string' &&option.substring(0,4)=="img:"){
-				option = `<img src="`+option.substring(4)+`">`;
-            }
-            console.log(option)
+                    if(typeof option == 'string' && option.substring(0,4)=="img:"){
+                        option = `<img style="max-height: 20vh;" src="`+option.substring(4)+`">`;
+                    }
+                    console.log(option)
                     divQues.innerHTML = `        
                     <input class="form-check-input" type="radio" name="`+question+`" id="exampleRadios2" value="`+projectData.questions[question][index]+`">
                     <label class="form-check-label" for="exampleRadios2">
@@ -79,6 +81,7 @@ function start(username, data){
                     div.appendChild(divQues)
                     
                 }
+                div.dataset.question = question;
             }
             document.getElementById("questions").appendChild(div)
             document.getElementById("questions").appendChild(document.createElement("BR"))
@@ -141,7 +144,33 @@ function linkify(text) {
 }
 
 function submit(){
-    if(usernameGlobal&&projectNameFromParams){
+    var correct = true;
+    if(quizQuestions){
+        
+        for(var element of document.getElementById("questions").childNodes){
+            if(element.nodeName == "DIV"){
+                var questionName;
+                var questionEl;
+                for(var el of element.childNodes){
+                    if(el.nodeName == "H6"){
+                        questionName = el.innerText;
+                        questionEl = el;
+                    }
+                }
+                var answer;
+                if(document.querySelector('input[name="'+questionName+'"]:checked'))
+                    answer = document.querySelector('input[name="'+questionName+'"]:checked').value;
+                if(!answer || quizQuestions[questionName]["answer"] != answer){
+                    questionEl.style.backgroundColor = "red"
+                    questionEl.style.borderRadius = "5px"
+                    correct = false;
+                }else{
+                    questionEl.style.backgroundColor = "";
+                }
+            }
+        }
+    }
+    if(correct&&usernameGlobal&&projectNameFromParams){
         document.getElementById("qrcode").innerHTML = ""
         new QRCode(document.getElementById("qrcode"), "http://goldbelt.github.io/sensei/grading/index.html?username="+usernameGlobal+"&project="+projectNameFromParams);
         $('#senseiCheck').modal('show');
