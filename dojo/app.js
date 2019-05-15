@@ -52,6 +52,7 @@ function start(username, data){
         if(projectNameFromParams == projectName)
              projectData = userData[projectName]
     }
+	console.log(projectData)
     console.log(projectData.scratchInstuctions)
     if(projectData.questions){
         //QUIZ
