@@ -84,7 +84,7 @@ function newUser(username){
 		
 		firebase.database().ref("Accounts/"+username).set({
 			stat: "new account",
-			(name): snap2.val()[name]
+			[name]: snap2.val()[name]
 		})
 	});
 }
