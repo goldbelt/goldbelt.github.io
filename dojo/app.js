@@ -53,7 +53,7 @@ function start(username, data){
              projectData = userData[projectName]
     }
 	console.log(projectData)
-    console.log(projectData.scratchInstuctions)
+    console.log(projectData.scratchInstructions)
     if(projectData.questions){
         //QUIZ
         quizQuestions = projectData.questions;
@@ -93,7 +93,7 @@ function start(username, data){
     }else if(projectData.scratchInstructions){
         document.getElementById("scratchDojo").style.display = "block";
 
-	document.getElementById("scratchIntructions").innerText = linkify(projectData.scratchInstuctions);
+	document.getElementById("scratchIntructions").innerText = linkify(projectData.scratchInstructions);
 
         var input = document.getElementById("scratchInput")
 
@@ -185,7 +185,7 @@ function submit(){
                     if(snapshot.val()["status"] != "DONE"){
                         $('#senseiCheck').modal('hide');
                         var input = document.getElementById("scratchInput")
-                        if(snapshot.val()["scratchInstuctions"])
+                        if(snapshot.val()["scratchInstructions"])
                             if(input.value){
                                 window.open(input.value);
                             }
