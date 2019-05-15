@@ -77,3 +77,14 @@ function createCell(txt,color){
   cell.appendChild(textnode);
   return cell;
 }
+
+function newUser(username){
+	firebase.database().ref("Projects/0").once('value',function(snap2){
+		var name = Object.keys(snap2.val())[0];
+		
+		firebase.database().ref("Accounts/"+username).set({
+			stat: "new account",
+			(name): snap2.val()[name]
+		})
+	});
+}
