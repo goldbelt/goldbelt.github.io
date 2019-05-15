@@ -90,7 +90,7 @@ function start(username, data){
         }
         //document.querySelector('input[name="genderS"]:checked').value;
 
-    }else if(projectData.scratchInstuctions){
+    }else if(projectData.scratchInstructions){
         document.getElementById("scratchDojo").style.display = "block";
 
 	document.getElementById("scratchIntructions").innerText = linkify(projectData.scratchInstuctions);
