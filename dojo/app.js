@@ -93,7 +93,7 @@ function start(username, data){
     }else if(projectData.scratchInstructions){
         document.getElementById("scratchDojo").style.display = "block";
 
-	document.getElementById("scratchIntructions").innerText = linkify(projectData.scratchInstructions);
+	document.getElementById("scratchIntructions").innerHTML = linkify(projectData.scratchInstructions);
 
         var input = document.getElementById("scratchInput")
 
