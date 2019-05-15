@@ -55,7 +55,7 @@ function complete(){
       status: "DONE",
     },function(){
       firebase.database().ref("Accounts/"+getParams()["username"]).once('value',function(snap){
-        firebase.database().ref("Projects/"+(Object.keys(snap.val()).length+1)).once('value',function(snap2){
+        firebase.database().ref("Projects/"+(Object.keys(snap.val()).length-1)).once('value',function(snap2){ //length -1 because there is a status prop
           if(!snap2.exists()){
             firebase.database().ref("Accounts/"+getParams()["username"]).update({
               stat:  "done"
